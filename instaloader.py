@@ -2,6 +2,8 @@
 
 """Download pictures (or videos) along with their captions and other metadata from Instagram."""
 
+""" download claw arcade photos and any geotags ||| instaloader "#인형뽑기" --geotags """
+
 import getpass
 import json
 import os
@@ -428,7 +430,7 @@ class Instaloader:
 
     def save_location(self, filename: str, location_json: Dict[str, str], mtime: datetime) -> None:
         filename += '_location.txt'
-        location_string = (location_json["name"] + "\n" +
+        location_string = (location_json["name"] + "|" + location_json["entry_data"]  + "|" + location_json["id"]
                            "https://maps.google.com/maps?q={0},{1}&ll={0},{1}\n".format(location_json["lat"],
                                                                                         location_json["lng"]))
         with open(filename, 'wb') as text_file:
